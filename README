@@ -1,0 +1,4 @@
+This is a quick & dirty sample project to demo how to build facebook/facebook connect application on Google Apps Engine. 
+
+This project need Google Apps Engine Patch, please download the sample project of Google Apps Engine Patch, copy its "common" folder or symbol link to its "common" folder. 
+
