@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+{% if ids %}
+<h2>Invitation have sent to following friends!</h2>
+{% for id in ids %}
+<fb:profile-pic uid="{{id}}" facebook-logo="true" width="48" height="48" linked="true"></fb:profile-pic>
+{% endfor %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,25 @@
+application: fbguinness
+version: 1
+runtime: python
+api_version: 1
+#default_expiration: "30d"
+
+handlers:
+- url: /secret_remote_api
+  script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
+  login: admin
+
+- url: /media
+#  expiration: "365d"
+  static_dir: _generated_media
+
+- url: /fbconnect
+  static_dir: media/fbconnect
+  
+- url: /img
+  static_dir: media/img
+  
+- url: /.*
+  script: main.py
+ 
+

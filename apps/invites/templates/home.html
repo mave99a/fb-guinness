@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+{% if invites %}
+<h2>Wow, following friends invite you have a drink!</h2>
+<ul>
+	{% for invite in invites %}
+	<li>
+	<fb:profile-pic uid="{{invite.sender}}" facebook-logo="true" width="48" height="48" linked="true"></fb:profile-pic>
+	<a href="#" onclick="drinkwith({{invite.sender}});">drink it! </a>
+	</li>
+	{% endfor %}
+</ul>
+{% else %}
+<h2>Ooops! no one invited you for a drink yet, why not invite some your friends?</h2>
+{% endif %}
+
+<fb:serverfbml style="width:100%;">
+  <script type="text/fbml">
+    <fb:fbml>
+      <fb:request-form action="http://fbguinness.appspot.com/invite/?sender={{fbuid}}" method="POST" invite="true" type="Guinness" content="Come and enjoy a pint of Guinness with me! <fb:req-choice url='http://apps.facebook.com/guinness-pints/' label='Accept and enjoy Guinness !' />  " >  
+      <fb:multi-friend-selector showborder="false" actiontext="Invite your friends to have a pint of Guinness." max="20" >
+      </fb:request-form>
+    </fb:fbml>
+  </script>
+</fb:serverfbml>
+
+{% if infbiframe %}
+{% else %}
+<fb:comments xid="8964" numposts="10" title="Guinness Application is super cool!" simple="1"></fb:comments>
+{% endif %}
+
+<script>
+//[749961003, 503505657]    
+function drinkwith(who) 
+{ 
+   var data = {"images":[{"src":"http://fbguinness.appspot.com/img/red.png", "href":"http://fbguinness.appspot.com/"}]};
+   FB.Connect.showFeedDialog('100734814414',data, who,"What a life!",null,
+          FB.RequireConnect.doNotRequire, function () {});   
+}; 
+
+
+</script>
+{% endblock %}
